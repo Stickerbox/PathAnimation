@@ -3,7 +3,6 @@
 //  PathAnimation
 //
 //  Created by Jordan.Dixon on 08/08/2017.
-//  Copyright © 2017 Mubaloo. All rights reserved.
 //
 
 import UIKit
