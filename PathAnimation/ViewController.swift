@@ -20,24 +20,24 @@ class ViewController: UIViewController {
         var views = [UIImageView]()
         (0...10).forEach { _ in views.append(UIImageView(image: #imageLiteral(resourceName: "unnamed"))) }
         
-        performPathAnimation(for: views, in: view)
+        view.performPathAnimation(for: views)
     }
     
 }
 
-extension UIViewController {
+extension UIView {
     
-    func performPathAnimation(for childViews: [UIView], in parentView: UIView) {
-
-        let randomStartPoint = CGFloat(arc4random_uniform(UInt32(parentView.frame.height)))
-        let randomEndPoint = CGFloat(arc4random_uniform(UInt32(parentView.frame.height)))
+    func performPathAnimation(for childViews: [UIView]) {
+        
+        let randomStartPoint = CGFloat(arc4random_uniform(UInt32(self.frame.height)))
+        let randomEndPoint = CGFloat(arc4random_uniform(UInt32(self.frame.height)))
         
         for childView in childViews {
-            generateAnimatedViews(startPoint: randomStartPoint, endPoint: randomEndPoint, for: childView, in: parentView)
+            generateAnimatedViews(startPoint: randomStartPoint, endPoint: randomEndPoint, for: childView)
         }
     }
     
-    private func generateAnimatedViews(startPoint: CGFloat, endPoint: CGFloat, for childView: UIView, in parentView: UIView) {
+    private func generateAnimatedViews(startPoint: CGFloat, endPoint: CGFloat, for childView: UIView) {
         
         let dimention = 20 + drand48() * 10 // generate a side length between 20 and 30
         childView.frame = CGRect(x: 0, y: 0, width: dimention, height: dimention)
@@ -52,7 +52,7 @@ extension UIViewController {
         
         childView.layer.add(animation, forKey: nil)
         
-        parentView.addSubview(childView)
+        self.addSubview(childView)
     }
     
     private func customPath(startPoint: CGFloat, endPoint: CGFloat) -> UIBezierPath {
@@ -60,7 +60,7 @@ extension UIViewController {
         let path = UIBezierPath()
         
         let startPoint = CGPoint(x: 0, y: startPoint)
-        let endPoint = CGPoint(x: view.frame.width + 30, y: endPoint)
+        let endPoint = CGPoint(x: self.frame.width + 30, y: endPoint)
         
         let randomYShift = 200 + drand48() * 300 // between 200 and 500
         let cp1 = CGPoint(x: 100, y: 100 - randomYShift)
