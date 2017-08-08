@@ -20,14 +20,14 @@ class ViewController: UIViewController {
         var views = [UIImageView]()
         (0...10).forEach { _ in views.append(UIImageView(image: #imageLiteral(resourceName: "unnamed"))) }
         
-        performPathAnimation(for: views, in: view, count: 10)
+        performPathAnimation(for: views, in: view)
     }
     
 }
 
 extension UIViewController {
     
-    func performPathAnimation(for childViews: [UIView], in parentView: UIView, count: Int) {
+    func performPathAnimation(for childViews: [UIView], in parentView: UIView) {
 
         let randomStartPoint = CGFloat(arc4random_uniform(UInt32(parentView.frame.height)))
         let randomEndPoint = CGFloat(arc4random_uniform(UInt32(parentView.frame.height)))
